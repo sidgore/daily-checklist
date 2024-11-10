@@ -9,8 +9,10 @@ const DailyEntrySchema = new Schema({
     entries: {
         react_time: { type: String, required: true },
         react_native_time: { type: String, required: true },
-        documentation_time: { type: String, required: true },
-        components_built: { type: String, required: true },
+        applications_time: { type: String, required: true },
+        internshala_time: { type: String, required: true },
+        interview_prep_time: { type: String, required: true },
+        other_time: { type: String, required: true },
     },
     createdAt: {
         type: Date,

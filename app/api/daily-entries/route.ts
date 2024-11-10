@@ -16,7 +16,7 @@ export async function POST(request: Request) {
             {
                 new: true,
                 upsert: true,
-                // runValidators: true
+                runValidators: true
             }
         );
 

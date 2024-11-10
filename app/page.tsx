@@ -25,14 +25,26 @@ const DAILY_QUESTIONS = [
   },
   {
     id: 3,
-    question: "Time spent on documentation?",
-    key: "documentation_time"
+    question: "Time invested in Applications today (in hours)?",
+    key: "applications_time"
   },
   {
     id: 4,
-    question: "Number of components built today?",
-    key: "components_built"
-  }
+    question: "Time spent on internshala today (in hours)?",
+    key: "internshala_time"
+  },
+  {
+    id: 5,
+    question: "Time spent on Interview preparation today (in hours)?",
+    key: "interview_prep_time"
+  },
+  {
+    id: 6,
+    question: "Time spent on Backend/Other Topics today (in hours)?",
+    key: "other_time"
+  },
+
+
 ]
 
 export default function DailyChecklist() {
@@ -57,7 +69,8 @@ export default function DailyChecklist() {
         }),
       })
 
-      if (response.ok) {
+
+      if (response.status === 200) {
         setAnswers({})
         toast({
           title: "Success!",
@@ -65,6 +78,14 @@ export default function DailyChecklist() {
           className: "top-0 right-0 bg-green-600 text-white",
           variant: 'default'
 
+        })
+      }
+      else {
+        toast({
+          title: "Error",
+          description: "Failed to save your progress. Please try again.",
+          variant: "destructive",
+          className: "top-0 right-0 ",
         })
       }
     } catch (error) {
@@ -120,6 +141,7 @@ export default function DailyChecklist() {
               <div key={item.id} className="space-y-2">
                 <Label htmlFor={item.key}>{item.question}</Label>
                 <Input
+                  required
                   id={item.key}
                   type="text"
                   value={answers[item.key] || ''}
