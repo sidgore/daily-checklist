@@ -22,7 +22,7 @@ export async function POST(request: Request) {
 
         return NextResponse.json(dailyEntry);
     } catch (error) {
-        if (error.name === 'ValidationError') {
+        if (error instanceof Error && error.name === 'ValidationError') {
             return NextResponse.json(
                 { error: error.message },
                 { status: 400 }
@@ -34,7 +34,6 @@ export async function POST(request: Request) {
         );
     }
 }
-
 export async function GET() {
     try {
         await connectToDatabase();
@@ -42,6 +41,7 @@ export async function GET() {
 
         return NextResponse.json(entries);
     } catch (error) {
+        console.error("Error submitting form:", error)
         return NextResponse.json(
             { error: "Failed to fetch entries" },
             { status: 500 }

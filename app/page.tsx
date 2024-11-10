@@ -89,6 +89,7 @@ export default function DailyChecklist() {
         })
       }
     } catch (error) {
+      console.error("Error submitting form:", error)
       toast({
         title: "Error",
         description: "Failed to save your progress. Please try again.",
